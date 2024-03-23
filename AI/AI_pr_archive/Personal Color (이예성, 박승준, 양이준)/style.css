@@ -1,0 +1,129 @@
+body{
+    background-color: black;
+}
+
+/* ------------------- */
+/* TEMPLATE        -- */
+/* ----------------- */
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+body { 
+    height: 100%; width: 100%; 
+    background-color: black;
+    color: whitesmoke; 
+    font-size: 40px; 
+    font-family: 'Lato';
+} 
+h1 { font-size: 50px; margin-bottom: 25px;}
+h2 { font-size: 26px; }
+h3 { font-size: 18px; }
+p { margin: 15px 0; line-height: 24px; color: gainsboro; }
+a { color: dodgerblue; text-decoration: none; border-bottom: 1px dotted; }
+a:hover { color: tomato; }
+
+.container { 
+    max-width: 960px; 
+    height: 100%;
+    margin: 0 auto; 
+    padding: 20px;
+    text-align: center;
+}
+
+h1.fourth { 
+    margin-top: 100px;
+    font-weight: 700;
+}
+
+h1.fourth span {
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+h1.fourth:hover span {
+    border-bottom: 1px solid whitesmoke;
+}
+
+h1.fourth span:first-child {
+    font-weight: 300;
+}
+/* Button Design */
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+.button_container_start {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30%;
+}
+
+.button_container_stop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+}
+
+.description, .link {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+}
+
+.description {
+    font-size: 35px;
+}
+
+.btn {
+    border: none;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #222;
+    padding: 17px 60px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.btn span {
+    position: relative; 
+    z-index: 1;
+}
+
+.btn:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 490%;
+    width: 140%;
+    background: #78c7d2;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.link a {
+    color: #000;
+    font-size: 25px; 
+}
+
+/*Stop Button*/

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>거기학생</title>
+  </head>
+  <body style="background-color: #b6a37c;">
+    <strong>
+        <div style="text-align: center;">
+            <h1 style="color:rgb(0, 0, 0);font-family:궁서;margin-top: 60px;"><div>거기학생</div></h1>
+            <h5 style="color:rgb(0, 0, 0);font-family:Verdana, Geneva, Tahoma, sans-serif;margin-top: 10px;"><div>Made with Teachable AI</div></h5>            
+            <button  style="margin-top: 30px;" type="button" class="btn btn-outline-dark btn-lg" onclick="init()"><h style="font-family:Verdana, Geneva, Tahoma, sans-serif;font-size:20px;">Start</h></button>            
+        </div>
+    </strong>
+
+<div id="webcam-container" style="text-align:center;margin-top:50px;"></div>
+<p id="demo"></p>
+<h1><div style="text-align: center; margin-top: 30px;font-family:궁서;" id="label-container"></div></h1>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+    function display_image(src, width, height, alt) {
+        var a = document.createElement("img");
+        a.src = src;
+        a.width = width;
+        a.height = height;
+        a.alt = alt;
+        document.body.appendChild(a);
+}
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "./my_model/";
+
+    let model, webcam, labelContainer, maxPredictions;
+
+    // Load the image model and setup the webcam
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = true; // whether to flip the webcam
+        webcam = new tmImage.Webcam(1, 1, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
+        }
+    }
+
+    async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the image model
+    async function predict() {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        if (prediction[0].probability.toFixed(2) >= 0.8) {
+            labelContainer.childNodes[0].innerHTML = "잘 집중하고 있네요";
+            var count = 0;
+        } else if (prediction[1].probability.toFixed(2) >= 0.9)
+//                    个________ 두번째 포즈               个________ 일정 % 보다 높을 경우
+
+        {
+            count += 1;
+            if (count == 1) {
+            var audio = new Audio("거기 학생 집중해.mp3");
+            audio.play();                
+            }
+          
+        display_image('test.jpg')
+
+          labelContainer.childNodes[0].innerHTML = "집중해주세요";
+//                                                      个________ 출력할 문장
+
+        } 
+
+    
+    }
+</script>
