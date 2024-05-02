@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div>Teachable Machine Pose Model</div>
+    <button type="button" onclick="init()">Start</button>
+    <button type="button" onclick="change();">start game</button>
+    <button type="button" onclick="stop();">stop game</button>
+    <div><canvas id="canvas"></canvas></div>
+    <div id="label-container"></div>
+    <div class="game">
+      <div id="dino"></div>
+      <div id="cactus"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
